@@ -1,5 +1,20 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "25.0.0",
+    "orientation": "portrait",
+    "name": "MobileFlashcards",
+    "description": "React Native certification coursework project",
+    "slug": "mobileflashcards",
+    "version": "1.0",
+    "icon": "http://www.webcreating.co.uk/img/app-logo.png",
+    "notification": {
+      "icon": "http://www.webcreating.co.uk/img/app-logo.png"
+    },
+    "ios": {
+      "bundleIdentifier": "org.mobileflashcards.exp"
+    },
+    "android": {
+      "package": "org.mobileflashcards.exp"
+    }
   }
 }
