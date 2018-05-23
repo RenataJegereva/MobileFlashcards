@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 // import { createStore } from 'redux'
 // import { Provider } from 'react-redux'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
-import { purple, blue, white } from './utils/colours'
+import { purple } from './utils/colours'
 import DecksList from './components/DecksList'
 import AddDeck from './components/AddDeck'
 import { Constants } from 'expo'
