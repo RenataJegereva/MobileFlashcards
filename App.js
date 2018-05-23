@@ -25,7 +25,6 @@ const Tabs = createBottomTabNavigator({
       title: 'Decks List',
       tabBarLabel: 'Decks List',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-playing-outline' size={30} color={tintColor} />
-      // tabBarIcon: () => <MaterialCommunityIcons name='cards' size={30} />
     }
   },
   AddDeck: {
@@ -34,7 +33,6 @@ const Tabs = createBottomTabNavigator({
       title: 'Add Deck',
       tabBarLabel: 'Add Deck',
       tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
-      // tabBarIcon: () => <MaterialCommunityIcons name='cards-playing-outline' size={30} />
     }
   }
 }, {
