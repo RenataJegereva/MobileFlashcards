@@ -17,7 +17,6 @@ function FlashcardsStatusBar ({backgroundColor, ...props}) {
   )
 }
 
-
 const Tabs = createBottomTabNavigator({
   DecksList: {
     screen: DecksList,
@@ -41,6 +40,9 @@ const Tabs = createBottomTabNavigator({
   },
   tabBarOptions: {
     activeTintColor: Platform.OS === 'ios' ? purple : white,
+    labelStyle: {
+      fontSize: 14,
+    },
     style: {
       height: 56,
       backgroundColor: Platform.OS === 'ios' ? white : purple,
@@ -55,28 +57,6 @@ const Tabs = createBottomTabNavigator({
   }
 })
 
-
-// const Tabs = createBottomTabNavigator({
-//   DecksList: {
-//     screen: DecksList,
-//     navigationOptions: {
-//       title: 'Decks List',
-//       tabBarLabel: 'Decks List',
-//       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-playing-outline' size={30} color={tintColor} />
-//       // tabBarIcon: () => <MaterialCommunityIcons name='cards' size={30} />
-//     }
-//   },
-//   AddDeck: {
-//     screen: AddDeck,
-//     navigationOptions: {
-//       title: 'Add Deck',
-//       tabBarLabel: 'Add Deck',
-//       tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
-//       // tabBarIcon: () => <MaterialCommunityIcons name='cards-playing-outline' size={30} />
-//     }
-//   }
-// });
-
 const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs
@@ -85,7 +65,6 @@ const MainNavigator = createStackNavigator({
     screen: DecksList
   }
 });
-
 
 export default class App extends React.Component {
   render() {
