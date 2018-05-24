@@ -1,13 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
-// import { createStore } from 'redux'
-// import { Provider } from 'react-redux'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
-import { purple, white } from './utils/colours'
+import { purple, white, blue } from './utils/colours'
 import DecksList from './components/DecksList'
 import AddDeck from './components/AddDeck'
 import { Constants } from 'expo'
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducer from './reducers'
 
 function FlashcardsStatusBar ({backgroundColor, ...props}) {
   return (
@@ -31,13 +32,15 @@ const Tabs = createBottomTabNavigator({
     navigationOptions: {
       title: 'Add Deck',
       tabBarLabel: 'Add Deck',
-      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />,
+      headerTintColor: purple,
+      headerStyle: {
+        backgroundColor: purple
+      }
     }
   }
-}, {
-  navigationOptions: {
-    header: null
-  },
+},
+  {
   tabBarOptions: {
     activeTintColor: Platform.OS === 'ios' ? purple : white,
     labelStyle: {
@@ -62,17 +65,38 @@ const MainNavigator = createStackNavigator({
     screen: Tabs
   },
   DecksList: {
-    screen: DecksList
+    screen: DecksList,
+    // navigationOptions: {
+    //   header: null
+    // },
   }
-});
+})
+
+
+// const MainNavigator = StackNavigator({
+//   Home: {
+//     screen: Tabs,
+//   },
+//   EntryDetail: {
+//     screen: EntryDetail,
+//     navigationOptions: {
+//       headerTintColor: white,
+//       headerStyle: {
+//         backgroundColor: purple,
+//       }
+//     }
+//   }
+// })
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <FlashcardsStatusBar backgroundColor={purple} barStyle="light-content" />
-        <MainNavigator />
-      </View>
+      // <Provider store={createStore(reducer)}>
+        <View style={{flex: 1}}>
+          <FlashcardsStatusBar backgroundColor={purple} barStyle="light-content" />
+          <MainNavigator />
+        </View>
+      // </Provider>
     );
   }
 }
