@@ -22,6 +22,7 @@ const Tabs = createBottomTabNavigator({
   DecksList: {
     screen: DecksList,
     navigationOptions: {
+      header: null,
       title: 'Decks List',
       tabBarLabel: 'Decks List',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-playing-outline' size={30} color={tintColor} />
@@ -66,37 +67,21 @@ const MainNavigator = createStackNavigator({
   },
   DecksList: {
     screen: DecksList,
-    // navigationOptions: {
-    //   header: null
-    // },
+    navigationOptions: {
+      header: null
+    },
   }
 })
-
-
-// const MainNavigator = StackNavigator({
-//   Home: {
-//     screen: Tabs,
-//   },
-//   EntryDetail: {
-//     screen: EntryDetail,
-//     navigationOptions: {
-//       headerTintColor: white,
-//       headerStyle: {
-//         backgroundColor: purple,
-//       }
-//     }
-//   }
-// })
 
 export default class App extends React.Component {
   render() {
     return (
-      // <Provider store={createStore(reducer)}>
+      <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
           <FlashcardsStatusBar backgroundColor={purple} barStyle="light-content" />
           <MainNavigator />
         </View>
-      // </Provider>
+      </Provider>
     );
   }
 }

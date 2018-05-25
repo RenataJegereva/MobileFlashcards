@@ -5,26 +5,29 @@ import { fetchDecks } from '../actions'
 import { getDecks } from '../utils/api'
 
 class DecksList extends Component {
-  componentWillMount() {
-    // const data = getDecks()
-    // console.log(JSON.stringify(data))
-    console.log('will mount')
-    // dispatch(fetchDecks(JSON.parse(data)))
+
+  async componentDidMount() {
+    const { dispatch } = this.props
+    const data = await getDecks()
+    dispatch(fetchDecks(JSON.parse(data)))
   }
 
   render() {
-    // const { navigate } = this.props.navigation
-    // console.log('NAV PROPS: ' + JSON.stringify(navigate))
+    const decks = this.props.decks
+
+    if (decks === null) {
+      return (
+        <View>
+          <Text>Start by adding the first deck</Text>
+        </View>
+      );
+    }
     return (
       <View>
-        <Text>Decks List view</Text>
+        <Text>Decks default</Text>
       </View>
-    )
+    );
   }
 }
 
-export default DecksList
-
-// export default connect(
-//   mapStateToProps
-// )(DecksList)
+export default connect(state => state)(DecksList)
