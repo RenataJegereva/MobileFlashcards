@@ -7,8 +7,31 @@ import AddDeck from './components/AddDeck'
 import { Constants } from 'expo'
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { compose, createStore, applyMiddleware  } from 'redux'
+import thunk from 'redux-thunk'
 import reducer from './reducers'
+
+const logger = store => next => action => {
+  console.group(action.type)
+  console.info('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  console.groupEnd(action.type)
+  return result
+}
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(
+  reducer,
+  composeEnhancers(
+    applyMiddleware(thunk, logger)
+  )
+)
+
+
+console.log('STORE: ' + JSON.stringify(store.getState()))
+
 
 function FlashcardsStatusBar ({backgroundColor, ...props}) {
   return (
@@ -76,7 +99,7 @@ const MainNavigator = createStackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={store}>
         <View style={{flex: 1}}>
           <FlashcardsStatusBar backgroundColor={purple} barStyle="light-content" />
           <MainNavigator />
