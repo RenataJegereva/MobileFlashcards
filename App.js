@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { purple, white, blue } from './utils/colours'
 import DecksList from './components/DecksList'
@@ -96,7 +96,7 @@ const MainNavigator = createStackNavigator({
   }
 })
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
