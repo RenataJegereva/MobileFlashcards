@@ -1,4 +1,5 @@
-import { FETCH_DECKS } from '../actions'
+import {  FETCH_DECKS,
+          ADD_DECK } from '../actions'
 
 const initialState = {
   decks: {}
@@ -10,6 +11,17 @@ function flashcards(state = initialState, action) {
       return {
         ...state,
         decks: action.decks
+      };
+    case ADD_DECK:
+      return {
+        ...state,
+        decks: {
+          ...state.decks,
+          [(action.title).toLowerCase()]: {
+            deckTitle: action.title,
+            questions: []
+          }
+        }
       };
     default:
       return state

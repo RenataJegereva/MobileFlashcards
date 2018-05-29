@@ -15,6 +15,18 @@ export function getDecks() {
 
 
 //saveDeckTitle
+export function saveDeckTitle(title) {
+  const deckId = title.toLowerCase()
 
+  return AsyncStorage.mergeItem(
+    STORAGE_KEY,
+    JSON.stringify({
+      [deckId]: {
+        title: title,
+        questions: []
+      }
+    })
+  );
+}
 
 //addCardToDeck
