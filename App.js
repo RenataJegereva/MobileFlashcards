@@ -8,6 +8,7 @@ import { Constants } from 'expo'
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'
 import { Provider } from 'react-redux'
 import { compose, createStore, applyMiddleware  } from 'redux'
+import { composeWithDevTools } from 'remote-redux-devtools'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
 
@@ -20,14 +21,21 @@ const logger = store => next => action => {
   return result
 }
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
+// const store = createStore(
+//   reducer,
+//   composeEnhancers(
+//     applyMiddleware(thunk, logger)
+//   )
+// )
+
+const composeEnhancers = composeWithDevTools({ realtime: true, port: 19001 });
 const store = createStore(
   reducer,
   composeEnhancers(
     applyMiddleware(thunk, logger)
-  )
-)
+));
 
 // console.log('STORE: ' + JSON.stringify(store.getState()))
 
