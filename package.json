@@ -1,9 +1,9 @@
 {
-  "name": "udacifitness",
+  "name": "flashcards",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "jest-expo": "25.0.0",
+    "jest-expo": "26.0.0",
     "react-devtools": "^3.2.3",
     "react-native-scripts": "1.11.1",
     "react-test-renderer": "16.2.0"
@@ -21,12 +21,13 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^25.0.0",
-    "react": "16.2.0",
-    "react-native": "0.52.0",
+    "expo": "^26.0.0",
+    "react": "16.3.0-alpha.1",
+    "react-native": "0.54.0",
     "react-navigation": "^2.0.1",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "remote-redux-devtools": "^0.5.12"
   }
 }
