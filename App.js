@@ -8,7 +8,7 @@ import { Constants } from 'expo'
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'
 import { Provider } from 'react-redux'
 import { compose, createStore, applyMiddleware  } from 'redux'
-import { composeWithDevTools } from 'remote-redux-devtools'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
 
