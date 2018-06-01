@@ -15,7 +15,7 @@ class DecksList extends Component {
 
   render() {
     const decks = this.props.decks
-    console.log('NAVIGATION: ==================: ' + JSON.stringify(this.props.navigation))
+    // console.log('NAVIGATION: ==================: ' + JSON.stringify(this.props.navigation))
     if (decks === null) {
       return (
         <View style={styles.container}>

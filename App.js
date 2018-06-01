@@ -23,7 +23,7 @@ const logger = store => next => action => {
 }
 
 
-const composeEnhancers = composeWithDevTools({ realtime: true, port: 19001 });
+const composeEnhancers = composeWithDevTools({ realtime: true, port: 19000 });
 const store = createStore(
   reducer,
   composeEnhancers(
@@ -44,7 +44,6 @@ const Tabs = createBottomTabNavigator({
   DecksList: {
     screen: DecksList,
     navigationOptions: {
-      header: null,
       title: 'Decks List',
       tabBarLabel: 'Decks List',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-playing-outline' size={30} color={tintColor} />
@@ -56,10 +55,7 @@ const Tabs = createBottomTabNavigator({
       title: 'Add Deck',
       tabBarLabel: 'Add Deck',
       tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />,
-      headerTintColor: purple,
-      headerStyle: {
-        backgroundColor: purple
-      }
+      headerTintColor: purple
     }
   }
 },
@@ -85,13 +81,13 @@ const Tabs = createBottomTabNavigator({
 
 const MainNavigator = createStackNavigator({
   Home: {
-    screen: Tabs
-  },
-  DecksList: {
-    screen: DecksList,
+    screen: Tabs,
     navigationOptions: {
       header: null
-    },
+    }
+  },
+  DecksList: {
+    screen: DecksList
   },
   Deck: {
     screen: Deck
