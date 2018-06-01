@@ -11,6 +11,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
+import Deck from './components/Deck'
 
 const logger = store => next => action => {
   console.group(action.type)
@@ -91,6 +92,9 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       header: null
     },
+  },
+  Deck: {
+    screen: Deck
   }
 })
 

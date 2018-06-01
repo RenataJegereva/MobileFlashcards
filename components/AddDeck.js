@@ -24,7 +24,7 @@ class AddDeck extends Component {
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        <Text style={styles.title}>New deck</Text>
+        <Text style={styles.heading}>New deck</Text>
         <View style={styles.containerInput}>
           <TextInput
             placeholder='Deck title'
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15
   },
-  title: {
+  heading: {
     margin: 20,
     fontSize: 30,
     letterSpacing: 2,

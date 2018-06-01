@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchDecks } from '../actions'
 import { getDecks } from '../utils/api'
@@ -15,7 +15,7 @@ class DecksList extends Component {
 
   render() {
     const decks = this.props.decks
-    console.log(JSON.stringify(decks))
+    console.log('NAVIGATION: ==================: ' + JSON.stringify(this.props.navigation))
     if (decks === null) {
       return (
         <View style={styles.container}>
@@ -25,14 +25,20 @@ class DecksList extends Component {
     }
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Decks list</Text>
+        <Text style={styles.heading}>Decks list</Text>
         <FlatList
           data={Object.values(decks)}
           renderItem={({ item: { questions, title } }) => {
+            // console.log('TITLE: ================: ' + JSON.stringify(title))
             return (
               <View>
-                <Text style={styles.deckTitle}>{title}</Text>
-                <Text style={styles.deckCardCount}>{questions.length} cards</Text>
+                <TouchableOpacity
+                  style={styles.btnTitle}
+                  onPress={() => this.props.navigation.navigate('Deck', { routeName: (title).toLowerCase() })}
+                >
+                  <Text style={styles.decktitle}>{title}</Text>
+                </TouchableOpacity>
+                <Text style={styles.deckCardCount}>this deck has {questions.length} card(s)</Text>
               </View>
             );
           }}
@@ -49,7 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  title: {
+  heading: {
     margin: 20,
     fontSize: 30,
     letterSpacing: 2,
@@ -61,19 +67,17 @@ const styles = StyleSheet.create({
     textShadowColor: grey,
     textShadowRadius: 3
   },
-  containerList: {
+  btnTitle: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: grey,
+    backgroundColor: blue,
     borderRadius: 5,
-    marginTop: 15,
-    width: 240,
-    height: 70
+    padding: 20
   },
-  deckTitle: {
+  decktitle: {
     fontSize: 18,
-    color: blue,
+    color: white,
     marginBottom: 5
   },
   deckCardCount: {

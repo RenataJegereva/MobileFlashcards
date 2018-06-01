@@ -18,7 +18,7 @@ function flashcards(state = initialState, action) {
         decks: {
           ...state.decks,
           [(action.title).toLowerCase()]: {
-            deckTitle: action.title,
+            title: action.title,
             questions: []
           }
         }
