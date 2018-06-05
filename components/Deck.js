@@ -1,15 +1,34 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { grey } from '../utils/colours'
+import { grey, purple, white } from '../utils/colours'
 import { connect } from 'react-redux'
+import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'
+
+class NavigationHeader extends React.Component {
+  render() {
+    return (
+      <View style={styles.containerNavHeader}>
+        <Text style={styles.textGoBack}> Go back </Text>
+        <MaterialCommunityIcons name='cards' size={30} color={purple} />
+      </View>
+    );
+  }
+}
 
 class Deck extends Component {
+  static navigationOptions = {
+    // title: `${this.props.navigation.state.routeName}`,
+    headerTintColor: purple,
+    headerTitle: <NavigationHeader />
+  }
+
   render() {
     const { decks, navigation } = this.props
 
     const deck = decks[navigation.state.params.deckId]
     // console.log('deck in Deck.js: ' + JSON.stringify(deck))
     const deckCardCount = deck.questions.length
+
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>{deck.title}</Text>
@@ -40,6 +59,14 @@ const styles = StyleSheet.create({
   deckCardCount: {
     color: grey,
     marginBottom: 25
+  },
+  containerNavHeader: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: "center"
+  },
+  textGoBack: {
+    color: purple
   }
 });
 

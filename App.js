@@ -94,7 +94,9 @@ const MainNavigator = createStackNavigator({
   }
 })
 
+
 export default class App extends Component {
+
   render() {
     YellowBox.ignoreWarnings([
       'Warning: componentWillMount is deprecated',
