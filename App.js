@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, Platform, YellowBox } from 'react-native'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { purple, white, blue } from './utils/colours'
 import DecksList from './components/DecksList'
@@ -27,7 +27,7 @@ const composeEnhancers = composeWithDevTools({ realtime: true, port: 19000 });
 const store = createStore(
   reducer,
   composeEnhancers(
-    applyMiddleware(thunk, logger)
+    applyMiddleware(thunk)//logger
 ));
 
 // console.log('STORE: ' + JSON.stringify(store.getState()))
@@ -96,6 +96,12 @@ const MainNavigator = createStackNavigator({
 
 export default class App extends Component {
   render() {
+    YellowBox.ignoreWarnings([
+      'Warning: componentWillMount is deprecated',
+      'Warning: componentWillReceiveProps is deprecated',
+      'Warning: componentWillUpdate is deprecated',
+    ])
+
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
