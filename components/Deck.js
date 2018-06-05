@@ -4,23 +4,7 @@ import { grey, purple, white } from '../utils/colours'
 import { connect } from 'react-redux'
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'
 
-class NavigationHeader extends React.Component {
-  render() {
-    return (
-      <View style={styles.containerNavHeader}>
-        <Text style={styles.textGoBack}> Go back </Text>
-        <MaterialCommunityIcons name='cards' size={30} color={purple} />
-      </View>
-    );
-  }
-}
-
 class Deck extends Component {
-  static navigationOptions = {
-    // title: `${this.props.navigation.state.routeName}`,
-    headerTintColor: purple,
-    headerTitle: <NavigationHeader />
-  }
 
   render() {
     const { decks, navigation } = this.props

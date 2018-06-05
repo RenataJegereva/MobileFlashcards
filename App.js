@@ -12,6 +12,7 @@ import { composeWithDevTools } from 'remote-redux-devtools'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
 import Deck from './components/Deck'
+import { headerBackTitle, NavigationActions } from 'react-navigation'
 
 const logger = store => next => action => {
   console.group(action.type)
@@ -79,6 +80,17 @@ const Tabs = createBottomTabNavigator({
   }
 })
 
+class NavigationHeader extends Component {
+  render() {
+    return (
+      <View style={styles.containerNavHeader}>
+        <Text style={styles.textGoBack} onPress={() => alert('This is a button!')}>Go back </Text>
+        <MaterialCommunityIcons name='cards' size={30} color={purple} />
+      </View>
+    );
+  }
+}
+
 const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
@@ -90,7 +102,12 @@ const MainNavigator = createStackNavigator({
     screen: DecksList
   },
   Deck: {
-    screen: Deck
+    screen: Deck,
+    navigationOptions: {
+      title: headerBackTitle,
+      headerTitle: <NavigationHeader />,
+      headerTintColor: purple
+    },
   }
 })
 
@@ -114,3 +131,16 @@ export default class App extends Component {
     );
   }
 }
+
+
+
+const styles = StyleSheet.create({
+  containerNavHeader: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: "center"
+  },
+  textGoBack: {
+    color: purple
+  }
+});
