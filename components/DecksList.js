@@ -13,8 +13,15 @@ class DecksList extends Component {
     dispatch(fetchDecks(JSON.parse(data)))
   }
 
+  handleonPress = (title) => {
+    const deckId = (title).toLowerCase()
+    this.props.navigation.navigate('Deck', { deckId })
+  }
+
   render() {
     const decks = this.props.decks
+
+    // console.log('decks in DecksList.js: ' + JSON.stringify(this.props.decks))
     // console.log('NAVIGATION: ==================: ' + JSON.stringify(this.props.navigation))
     if (decks === null) {
       return (
@@ -34,7 +41,7 @@ class DecksList extends Component {
               <View>
                 <TouchableOpacity
                   style={styles.btnTitle}
-                  onPress={() => this.props.navigation.navigate('Deck', { routeName: (title).toLowerCase() })}
+                  onPress={() => this.handleonPress(title)}
                 >
                   <Text style={styles.decktitle}>{title}</Text>
                 </TouchableOpacity>

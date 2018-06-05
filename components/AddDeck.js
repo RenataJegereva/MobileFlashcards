@@ -14,7 +14,7 @@ class AddDeck extends Component {
   addDeck = () => {
     const { title } = this.state
     const deckId = title.toLowerCase()
-    console.log('DECK IN ADD DECK TITLE: ' + JSON.stringify(deckId))
+    console.log('DECKID: ' + JSON.stringify(deckId))
     this.props.dispatch(addDeck(title))
     this.props.navigation.navigate('Deck', { deckId })
     saveDeckTitle(title)
