@@ -31,3 +31,10 @@ export function saveDeckTitle(title) {
 
 
 //addCardToDeck
+export function AddCardToDeck(id, card) {
+  return AsyncStorage.getItem(STORAGE_KEY).then(result => {
+    const data = JSON.parse(result);
+    data[id].questions.push(card);
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  });
+}

@@ -14,3 +14,11 @@ export function addDeck(title) {
     title
   }
 }
+
+export function addCard(id, card) {
+  return {
+    type: ADD_CARD,
+    id,
+    card
+  }
+}

@@ -6,10 +6,18 @@ import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'
 
 class Deck extends Component {
 
+  addCardToDeck = (title) => {
+    const { navigation } = this.props
+    navigation.navigate('AddCardToDeck', {
+      title
+    });
+  }
+
   render() {
     const { decks, navigation } = this.props
 
     const deck = decks[navigation.state.params.deckId]
+    // alert(JSON.stringify()
     // console.log('deck in Deck.js: ' + JSON.stringify(deck))
     const deckCardCount = deck.questions.length
 
@@ -17,6 +25,13 @@ class Deck extends Component {
       <View style={styles.container}>
         <Text style={styles.heading}>{deck.title}</Text>
         <Text style={styles.deckCardCount}>This deck has {deckCardCount} card(s).</Text>
+
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => this.addCardToDeck(deck.title)}
+        >
+          <Text style={styles.btnText}>Add a card</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -25,8 +40,8 @@ class Deck extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   heading: {
     margin: 20,
@@ -47,10 +62,22 @@ const styles = StyleSheet.create({
   containerNavHeader: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: "center"
+    alignItems: 'center'
   },
   textGoBack: {
     color: purple
+  },
+  btn: {
+    backgroundColor: purple,
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: 30,
+    paddingRight: 30,
+    marginTop: 20,
+    borderRadius: 7
+  },
+  btnText: {
+    color: white
   }
 });
 

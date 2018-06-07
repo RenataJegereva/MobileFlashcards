@@ -13,6 +13,7 @@ import thunk from 'redux-thunk'
 import reducer from './reducers'
 import Deck from './components/Deck'
 import { headerBackTitle, NavigationActions } from 'react-navigation'
+import AddCard from './components/AddCard'
 
 const logger = store => next => action => {
   console.group(action.type)
@@ -28,7 +29,7 @@ const composeEnhancers = composeWithDevTools({ realtime: true, port: 19000 });
 const store = createStore(
   reducer,
   composeEnhancers(
-    applyMiddleware(thunk)//logger
+    applyMiddleware(thunk,logger)
 ));
 
 // console.log('STORE: ' + JSON.stringify(store.getState()))
@@ -45,7 +46,7 @@ const Tabs = createBottomTabNavigator({
   DecksList: {
     screen: DecksList,
     navigationOptions: {
-      title: 'Decks List',
+      headerTitle: 'Decks List',
       tabBarLabel: 'Decks List',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-playing-outline' size={30} color={tintColor} />
     }
@@ -53,7 +54,7 @@ const Tabs = createBottomTabNavigator({
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
-      title: 'Add Deck',
+      headerTitle: 'Add Deck',
       tabBarLabel: 'Add Deck',
       tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />,
       headerTintColor: purple
@@ -80,17 +81,6 @@ const Tabs = createBottomTabNavigator({
   }
 })
 
-class NavigationHeader extends Component {
-  render() {
-    return (
-      <View style={styles.containerNavHeader}>
-        <Text style={styles.textGoBack} onPress={() => alert('This is a button!')}>Go back </Text>
-        <MaterialCommunityIcons name='cards' size={30} color={purple} />
-      </View>
-    );
-  }
-}
-
 const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
@@ -98,17 +88,22 @@ const MainNavigator = createStackNavigator({
       header: null
     }
   },
-  DecksList: {
-    screen: DecksList
-  },
   Deck: {
     screen: Deck,
     navigationOptions: {
       title: headerBackTitle,
-      headerTitle: <NavigationHeader />,
+      headerTitle: 'Deck',
       headerTintColor: purple
     },
-  }
+  },
+  AddCardToDeck: {
+    screen: AddCard,
+    navigationOptions: {
+      title: headerBackTitle,
+      headerTitle: 'Add card',
+      headerTintColor: purple
+    }
+  },
 })
 
 
@@ -138,9 +133,10 @@ const styles = StyleSheet.create({
   containerNavHeader: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: "center"
+    alignItems: 'center'
   },
   textGoBack: {
-    color: purple
+    color: purple,
+    alignItems: "flex-start"
   }
 });
