@@ -35,6 +35,7 @@ class AddCard extends Component {
             numberOfLines = {4}
             autoFocus={true}
             value={this.state.question}
+            onChangeText={question => this.setState({ question })}
           />
         </View>
         <View style={styles.containerInput}>
@@ -44,6 +45,7 @@ class AddCard extends Component {
             multiLine={true}
             numberOfLines = {4}
             value={this.state.answer}
+            onChangeText={answer => this.setState({ answer })}
           />
         </View>
         <TouchableOpacity style={styles.btn} onPress={this.addCard}>

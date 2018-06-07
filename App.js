@@ -125,6 +125,7 @@ export default class App extends Component {
       'Warning: componentWillUpdate is deprecated',
     ])
 
+
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>

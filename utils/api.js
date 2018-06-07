@@ -12,6 +12,13 @@ export function getDecks() {
 }
 
 //getDeck
+export function getDeck(deckId) {
+  return AsyncStorage.getItem(STORAGE_KEY, (err, result) => {
+    const decks = JSON.parse(result)
+    console.log('api.js - deck cards by deckId: ' + JSON.stringify(decks[deckId].questions))
+    return decks[deckId].questions
+  });
+}
 
 
 //saveDeckTitle
