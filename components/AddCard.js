@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet,  KeyboardAvoidingView, TouchableOpacity, TextInput } from 'react-native'
 import { AddCardToDeck } from '../utils/api'
+import { addCard } from '../actions'
 import { purple, white, blue, grey } from '../utils/colours'
 import { connect } from 'react-redux'
 
@@ -12,7 +13,14 @@ class AddCard extends Component {
   }
 
   addCard = () => {
-    alert('ok')
+    const { navigation, dispatch } = this.props
+    const { question, answer } = this.state
+
+    const deckId = (navigation.state.params.title).toLowerCase()
+    dispatch(addCard(deckId, { question, answer }))
+    AddCardToDeck(deckId, { question, answer })
+
+    navigation.goBack()
   }
 
   render() {
