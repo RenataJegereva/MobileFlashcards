@@ -29,7 +29,7 @@ const composeEnhancers = composeWithDevTools({ realtime: true, port: 19000 });
 const store = createStore(
   reducer,
   composeEnhancers(
-    applyMiddleware(thunk,logger)
+    applyMiddleware(thunk, logger)
 ));
 
 // console.log('STORE: ' + JSON.stringify(store.getState()))
