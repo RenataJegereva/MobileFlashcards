@@ -7,8 +7,8 @@ import { connect } from 'react-redux'
 class AddCard extends Component {
 
   state = {
-    question: 'blah question',
-    answer: 'blah answer'
+    question: '',
+    answer: ''
   }
 
   addCard = () => {
@@ -24,6 +24,8 @@ class AddCard extends Component {
             placeholder='Question'
             style={styles.input}
             multiLine={true}
+            numberOfLines = {4}
+            autoFocus={true}
             value={this.state.question}
           />
         </View>
@@ -32,6 +34,7 @@ class AddCard extends Component {
             placeholder='Answer'
             style={styles.input}
             multiLine={true}
+            numberOfLines = {4}
             value={this.state.answer}
           />
         </View>

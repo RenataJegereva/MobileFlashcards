@@ -29,6 +29,7 @@ class AddDeck extends Component {
           <TextInput
             placeholder='Deck title'
             style={styles.input}
+            autoFocus={true}
             onChangeText={title => this.setState({title})}
             value={this.state.title}
           />
