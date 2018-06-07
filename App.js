@@ -14,6 +14,7 @@ import reducer from './reducers'
 import Deck from './components/Deck'
 import { headerBackTitle, NavigationActions } from 'react-navigation'
 import AddCard from './components/AddCard'
+import Quiz from './components/Quiz'
 
 const logger = store => next => action => {
   console.group(action.type)
@@ -104,6 +105,14 @@ const MainNavigator = createStackNavigator({
       headerTintColor: purple
     }
   },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: headerBackTitle,
+      headerTitle: 'Quiz',
+      headerTintColor: purple
+    }
+  }
 })
 
 

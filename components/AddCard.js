@@ -26,7 +26,7 @@ class AddCard extends Component {
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        <Text style={styles.heading}>New Card</Text>
+        <Text style={styles.heading}>New card</Text>
         <View style={styles.containerInput}>
           <TextInput
             placeholder='Question'

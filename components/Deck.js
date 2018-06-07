@@ -13,6 +13,13 @@ class Deck extends Component {
     });
   }
 
+  startQuiz = () => {
+    const { navigation } = this.props
+    navigation.navigate('Quiz', {
+      deckId: navigation.state.params.deckId
+    })
+  }
+
   render() {
     const { decks, navigation } = this.props
 
@@ -25,6 +32,15 @@ class Deck extends Component {
       <View style={styles.container}>
         <Text style={styles.heading}>{deck.title}</Text>
         <Text style={styles.deckCardCount}>This deck has {deckCardCount} card(s).</Text>
+
+        {deckCardCount > 0 ?
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => this.startQuiz(deck.title)}
+          >
+          <Text style={styles.btnText}>Start quiz</Text>
+          </TouchableOpacity> : null
+        }
 
         <TouchableOpacity
           style={styles.btn}
