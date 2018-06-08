@@ -15,10 +15,9 @@ class Quiz extends Component {
   fetchDeck() {
     const { navigation } = this.props
     const deckId = navigation.state.params.deckId
+    let cards
 
-    const cards = getDeck(deckId)
-    console.log('QUIZ.js - deck cards data by deckId: ' + JSON.stringify(getDeck(deckId)))
-    this.setState({cards: cards})
+    getDeck(deckId).then(response => cards = response).then(this.setState({cards: cards}))
   }
 
   componentDidMount() {
@@ -31,7 +30,7 @@ class Quiz extends Component {
   render() {
     const { navigation } = this.props
     const deckId = navigation.state.params.deckId
-
+    console.log('QUIZ.js - deck cards data by deckId: ' + JSON.stringify(this.state.cards))
     return (
       <View>
         <Text>Quiz deck id: {deckId}</Text>
