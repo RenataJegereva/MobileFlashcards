@@ -18,7 +18,7 @@ class Quiz extends Component {
 
     //get cards for this deck
     const deckId = this.props.navigation.state.params.deckId
-    const cards = await getDeck(deckId)
+    let cards = await getDeck(deckId)
     this.setState({cards: JSON.parse(cards)})
   }
 
