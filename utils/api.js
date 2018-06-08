@@ -14,9 +14,10 @@ export function getDecks() {
 //getDeck
 export function getDeck(deckId) {
   return AsyncStorage.getItem(STORAGE_KEY, (err, result) => {
-    const decks = JSON.parse(result)
-    console.log('api.js - deck cards by deckId: ' + JSON.stringify(decks[deckId].questions))
-    return decks[deckId].questions
+    let decks = JSON.parse(result)
+    let cards = decks[deckId].questions
+    console.log('api.js cards: ' + JSON.stringify(cards))
+    return cards
   });
 }
 
