@@ -12,15 +12,35 @@ class Quiz extends Component {
     answer: ''
   }
 
-  async componentDidMount() {
+  fetchDeck() {
+    const { navigation } = this.props
+    const deckId = navigation.state.params.deckId
+    let cards
+    getDeck(deckId).then(response => cards = JSON.parse(response))
+    setTimeout(() => {this.setState({cards: cards[deckId].questions})}, 500)
+  }
+
+  componentDidMount() {
     clearLocalNotification()
       .then(setLocalNotification)
 
-    //get cards for this deck
-    const deckId = this.props.navigation.state.params.deckId
-    let cards = await getDeck(deckId)
-    this.setState({cards: JSON.parse(cards)})
+      this.fetchDeck()
   }
+
+  //TODO: WHY does AsyncStorage never resolves?
+  // fetchDeck = async () => {
+  //   const { navigation } = this.props
+  //   const deckId = naviation.state.params.deckId
+  //   let cards = await getDeck(deckId)
+  //   this.setState({cards: cards})
+  // }
+
+  // componentDidMount() {
+  //   clearLocalNotification()
+  //     .then(setLocalNotification)
+
+  //     this.fetchDeck()
+  // }
 
   render() {
     const { navigation } = this.props

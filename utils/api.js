@@ -14,12 +14,22 @@ export function getDecks() {
 //getDeck
 export function getDeck(deckId) {
   return AsyncStorage.getItem(STORAGE_KEY, (err, result) => {
-    let decks = JSON.parse(result)
-    let cards = decks[deckId].questions
-    console.log('api.js cards: ' + JSON.stringify(cards))
-    return cards
+    const decks = JSON.parse(result)
+    console.log('api.js - deck cards by deckId: ' + JSON.stringify(decks[deckId].questions))
+    return decks[deckId].questions
   });
 }
+
+//getDeck
+// export function getDeck(deckId) {
+//   console.log('=================inside getDeck')
+//   return AsyncStorage.getItem(STORAGE_KEY, (err, result) => {
+//     let decks = JSON.parse(result)
+//     let cards = decks[deckId].questions
+//     console.log('api.js cards: ' + JSON.stringify(cards))
+//     return cards
+//   });
+// }
 
 
 //saveDeckTitle
