@@ -2,9 +2,9 @@
 > React Native
 
 Built with:
-[React Native](https://facebook.github.io/react-native/)
-[Redux](https://redux.js.org/)
-[Expo](https://expo.io/)
+-[React Native](https://facebook.github.io/react-native/)
+-[Redux](https://redux.js.org/)
+-[Expo](https://expo.io/)
 
 ## Insructions
 
