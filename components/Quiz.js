@@ -24,7 +24,7 @@ class Quiz extends Component {
 
   componentDidMount() {
     clearLocalNotification().then(setLocalNotification)
-      this.fetchDeck()
+    this.fetchDeck()
   }
 
   markAnswer = (correct) => {
@@ -37,6 +37,7 @@ class Quiz extends Component {
 
     finishedQuiz ?
     clearLocalNotification().then(setLocalNotification)
+    //set next question/answer pair using updated index
     : this.setState({ question: cards[index].question, answer: cards[index].answer })
   }
 

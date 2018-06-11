@@ -12,28 +12,16 @@ import { composeWithDevTools } from 'remote-redux-devtools'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
 import Deck from './components/Deck'
-import { headerBackTitle, NavigationActions } from 'react-navigation'
+import { headerBackTitle } from 'react-navigation'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
-
-const logger = store => next => action => {
-  console.group(action.type)
-  console.info('dispatching', action)
-  let result = next(action)
-  console.log('next state', store.getState())
-  console.groupEnd(action.type)
-  return result
-}
-
 
 const composeEnhancers = composeWithDevTools({ realtime: true, port: 19000 });
 const store = createStore(
   reducer,
   composeEnhancers(
-    applyMiddleware(thunk)//logger
-));
-
-// console.log('STORE: ' + JSON.stringify(store.getState()))
+    applyMiddleware(thunk)
+))
 
 function FlashcardsStatusBar ({backgroundColor, ...props}) {
   return (
