@@ -6,6 +6,8 @@ Built with:
 - [Redux](https://redux.js.org/)
 - [Expo](https://expo.io/)
 
+The application was built for iOS and has been tested on iPhone 5
+
 ## Insructions
 
 Run
