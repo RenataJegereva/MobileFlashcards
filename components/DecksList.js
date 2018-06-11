@@ -21,8 +21,6 @@ class DecksList extends Component {
   render() {
     const decks = this.props.decks
 
-    // console.log('decks in DecksList.js: ' + JSON.stringify(this.props.decks))
-    // console.log('NAVIGATION: ==================: ' + JSON.stringify(this.props.navigation))
     if (decks === null) {
       return (
         <View style={styles.container}>
@@ -36,7 +34,6 @@ class DecksList extends Component {
         <FlatList
           data={Object.values(decks)}
           renderItem={({ item: { questions, title } }) => {
-            // console.log('TITLE: ================: ' + JSON.stringify(title))
             return (
               <View>
                 <TouchableOpacity
