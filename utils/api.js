@@ -1,6 +1,19 @@
 import { AsyncStorage } from 'react-native'
 const STORAGE_KEY = 'flashcards:decks'
 
+//getDeck
+export function getDeck(deckId) {
+  return AsyncStorage.getItem(STORAGE_KEY, (err, result) => {
+    const decks = JSON.parse(result)
+    const cards = decks[deckId].questions
+    //correctly logs questions(cards) for this particular deck
+    console.log('api.js cards object: ' + JSON.stringify(cards))
+    //cards is an object
+    console.log('api.js: ' + typeof cards)
+    return cards
+  });
+}
+
 //getDecks
 export function getDecks() {
   return AsyncStorage.getItem(STORAGE_KEY, (err, result) => {
@@ -10,16 +23,6 @@ export function getDecks() {
     return JSON.parse(result);
   });
 }
-
-//getDeck
-export function getDeck(deckId) {
-  return AsyncStorage.getItem(STORAGE_KEY, (err, result) => {
-    const decks = JSON.parse(result)
-    console.log('api.js - deck cards by deckId: ' + JSON.stringify(decks[deckId].questions))
-    return decks[deckId].questions
-  });
-}
-
 
 //saveDeckTitle
 export function saveDeckTitle(title) {

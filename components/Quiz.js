@@ -6,18 +6,17 @@ import { getDeck } from '../utils/api'
 class Quiz extends Component {
 
   state = {
-    cards: '',
-    index: 0,
+    cards: [],
     question: '',
     answer: ''
   }
 
-  fetchDeck() {
-    const { navigation } = this.props
-    const deckId = navigation.state.params.deckId
-    let cards
-
-    getDeck(deckId).then(response => cards = response).then(this.setState({cards: cards}))
+  fetchDeck = async () => {
+    let { index } = this.state
+    let cards = await getDeck(this.props.navigation.state.params.deckId)
+    console.log(JSON.stringify(cards))//returns all decks, not cards for a specific deck
+    console.log('quiz.js ' + typeof cards)//is a string
+    // this.setState({cards: cards})
   }
 
   componentDidMount() {
@@ -30,7 +29,7 @@ class Quiz extends Component {
   render() {
     const { navigation } = this.props
     const deckId = navigation.state.params.deckId
-    console.log('QUIZ.js - deck cards data by deckId: ' + JSON.stringify(this.state.cards))
+    console.log('quiz.js cards in render: ' + JSON.stringify(this.state.cards))
     return (
       <View>
         <Text>Quiz deck id: {deckId}</Text>
